@@ -2,11 +2,13 @@ import type { Resource } from "@/types";
 
 interface ResourcesProps {
   items: Resource[];
+  /** Colour classes for the card (border, background, shadow). */
+  cardClass?: string;
 }
 
 const KIND_STYLE: Record<Resource["kind"], string> = {
-  video: "bg-rose-300/15 text-rose-200",
-  course: "bg-teal-300/15 text-teal-200",
+  video: "bg-rose-100 text-rose-900",
+  course: "bg-teal-100 text-teal-900",
 };
 
 const KIND_LABEL: Record<Resource["kind"], string> = {
@@ -24,7 +26,10 @@ function isSafeUrl(url: string): boolean {
   }
 }
 
-export default function Resources({ items }: ResourcesProps) {
+export default function Resources({
+  items,
+  cardClass = "border-white bg-white/75 shadow-xl shadow-amber-900/5",
+}: ResourcesProps) {
   const safe = (items ?? []).filter((r) => isSafeUrl(r.url));
   if (safe.length === 0) return null;
 
@@ -39,10 +44,10 @@ export default function Resources({ items }: ResourcesProps) {
   return (
     <section
       aria-label="Where to learn"
-      className="w-full rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-8"
+      className={`w-full rounded-3xl border p-6 backdrop-blur-md sm:p-8 ${cardClass}`}
     >
-      <h2 className="text-xl font-bold text-stone-50">Where to learn</h2>
-      <p className="mt-1.5 mb-7 max-w-xl text-sm leading-relaxed text-stone-400">
+      <h2 className="text-xl font-bold text-stone-900">Where to learn</h2>
+      <p className="mb-7 mt-1.5 max-w-xl text-sm font-medium leading-relaxed text-stone-800">
         Handpicked videos and courses for the skills where improving would
         lift your score the most.
       </p>
@@ -51,11 +56,11 @@ export default function Resources({ items }: ResourcesProps) {
         {Array.from(groups.entries()).map(([skill, rows]) => (
           <div key={skill}>
             <div className="flex items-center gap-2.5">
-              <span className="h-2 w-2 rounded-full bg-amber-300" aria-hidden />
-              <h3 className="font-semibold text-stone-50">{skill}</h3>
+              <span className="h-2 w-2 rounded-full bg-orange-500" aria-hidden />
+              <h3 className="font-bold text-stone-900">{skill}</h3>
             </div>
             {rows[0]?.reason && (
-              <p className="mt-1 ml-[18px] text-xs leading-relaxed text-stone-400">
+              <p className="ml-[18px] mt-1 text-xs font-medium leading-relaxed text-stone-700">
                 {rows[0].reason}
               </p>
             )}
@@ -67,16 +72,16 @@ export default function Resources({ items }: ResourcesProps) {
                     href={r.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-stone-200 transition hover:border-amber-300/40 hover:bg-white/[0.07]"
+                    className="group flex items-center gap-3 rounded-2xl border border-stone-300 bg-white/90 px-4 py-3.5 text-sm font-semibold text-stone-900 transition hover:border-orange-400 hover:bg-white hover:shadow-md hover:shadow-orange-200/50"
                   >
                     <span
-                      className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${KIND_STYLE[r.kind]}`}
+                      className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold ${KIND_STYLE[r.kind]}`}
                     >
                       {KIND_LABEL[r.kind]}
                     </span>
                     <span className="min-w-0 flex-1 leading-snug">{r.title}</span>
                     <span
-                      className="shrink-0 text-stone-500 transition group-hover:translate-x-0.5 group-hover:text-amber-200"
+                      className="shrink-0 text-stone-600 transition group-hover:translate-x-0.5 group-hover:text-orange-600"
                       aria-hidden
                     >
                       ↗

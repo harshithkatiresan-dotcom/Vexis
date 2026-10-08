@@ -77,3 +77,4 @@ class ReportResponse(BaseModel):
     T: float
     breakdown: list[SkillResult]
     roadmap: Roadmap
+    resources: list[Resource] = []         # learning links for the biggest gaps
