@@ -88,11 +88,10 @@ def report(session_id: str):
     V = verify.build_V(s)
     skills = [{"name": k["name"], "w": k["w"], "C": k["C"], "V": V[k["name"]], "R": k["R"]} for k in s["skills"]]
     out = compute_jrs(skills, s["T"])
-    roadmap = dict(build_roadmap(s, out["breakdown"]))
-    roadmap["resources"] = build_resources(out["breakdown"])
     return {
         "jrs": out["jrs"],
         "T": out["T"],
         "breakdown": out["breakdown"],
-        "roadmap": roadmap,
+        "roadmap": build_roadmap(s, out["breakdown"]),
+        "resources": build_resources(out["breakdown"]),
     }

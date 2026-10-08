@@ -37,9 +37,9 @@ function checkUrl(value: string, host: string): string | undefined {
 }
 
 const inputClass =
-  "w-full rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-stone-100 placeholder:text-stone-500 transition focus:border-amber-300/60 focus:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-amber-300/20 disabled:opacity-50";
-const labelClass = "mb-2 block text-sm font-medium text-stone-200";
-const errorClass = "mt-2 text-xs text-rose-300";
+  "w-full rounded-2xl border border-stone-300 bg-white/90 px-4 py-3 text-sm text-stone-900 placeholder:text-stone-500 transition focus:border-amber-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-300/50 disabled:opacity-50";
+const labelClass = "mb-2 block text-sm font-semibold text-stone-900";
+const errorClass = "mt-2 text-xs font-medium text-rose-700";
 
 export default function UploadForm({ onComplete }: UploadFormProps) {
   const fileInput = useRef<HTMLInputElement>(null);
@@ -136,7 +136,7 @@ export default function UploadForm({ onComplete }: UploadFormProps) {
       {/* PDF drop zone */}
       <div>
         <label className={labelClass} htmlFor="resume-pdf">
-          Your resume (PDF) <span className="text-amber-300">*</span>
+          Your resume (PDF) <span className="text-amber-700">*</span>
         </label>
         <div
           onDragOver={(e) => {
@@ -156,12 +156,12 @@ export default function UploadForm({ onComplete }: UploadFormProps) {
           }}
           className={`flex cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed px-6 py-9 text-center transition ${
             dragging
-              ? "border-amber-300 bg-amber-300/10"
+              ? "border-amber-500 bg-amber-50"
               : errors.pdf
-              ? "border-rose-300/60 bg-white/[0.03]"
+              ? "border-rose-400 bg-rose-50/60"
               : pdf
-              ? "border-teal-300/40 bg-teal-300/[0.06]"
-              : "border-white/15 bg-white/[0.03] hover:border-white/30 hover:bg-white/[0.05]"
+              ? "border-teal-400 bg-teal-50/70"
+              : "border-stone-400 bg-white/60 hover:border-amber-400 hover:bg-amber-50/50"
           }`}
         >
           <input
@@ -174,8 +174,8 @@ export default function UploadForm({ onComplete }: UploadFormProps) {
             onChange={(e) => acceptFile(e.target.files?.[0])}
           />
           <span
-            className={`mb-3 flex h-11 w-11 items-center justify-center rounded-2xl text-xl ${
-              pdf ? "bg-teal-300/20 text-teal-200" : "bg-white/10 text-stone-300"
+            className={`mb-3 flex h-11 w-11 items-center justify-center rounded-2xl text-xl font-bold ${
+              pdf ? "bg-teal-100 text-teal-800" : "bg-amber-100 text-amber-800"
             }`}
             aria-hidden
           >
@@ -183,19 +183,19 @@ export default function UploadForm({ onComplete }: UploadFormProps) {
           </span>
           {pdf ? (
             <>
-              <p className="max-w-full truncate text-sm font-medium text-stone-50">
+              <p className="max-w-full truncate text-sm font-semibold text-stone-900">
                 {pdf.name}
               </p>
-              <p className="mt-1 text-xs text-stone-400">
+              <p className="mt-1 text-xs text-stone-700">
                 {(pdf.size / 1024).toFixed(0)} KB · click or drop to replace
               </p>
             </>
           ) : (
             <>
-              <p className="text-sm font-medium text-stone-100">
+              <p className="text-sm font-semibold text-stone-900">
                 Drop your resume here
               </p>
-              <p className="mt-1 text-xs text-stone-400">
+              <p className="mt-1 text-xs text-stone-700">
                 or click to browse · PDF only, up to {MAX_PDF_MB} MB
               </p>
             </>
@@ -207,26 +207,22 @@ export default function UploadForm({ onComplete }: UploadFormProps) {
       {/* Discipline */}
       <div>
         <label className={labelClass} htmlFor="discipline">
-          What are you aiming for? <span className="text-amber-300">*</span>
+          What are you aiming for? <span className="text-amber-700">*</span>
         </label>
         <select
           id="discipline"
           value={disciplineChoice}
           disabled={loading}
           onChange={(e) => setDisciplineChoice(e.target.value)}
-          className={`${inputClass} appearance-none bg-[length:1rem] pr-10`}
+          className={inputClass}
         >
-          <option value="" className="bg-[#1a1524]">
-            Select a discipline…
-          </option>
+          <option value="">Select a discipline…</option>
           {DISCIPLINES.map((d) => (
-            <option key={d} value={d} className="bg-[#1a1524]">
+            <option key={d} value={d}>
               {d}
             </option>
           ))}
-          <option value={OTHER} className="bg-[#1a1524]">
-            Other (type your own)…
-          </option>
+          <option value={OTHER}>Other (type your own)…</option>
         </select>
         {disciplineChoice === OTHER && (
           <input
@@ -244,7 +240,7 @@ export default function UploadForm({ onComplete }: UploadFormProps) {
       {/* Stack */}
       <div>
         <label className={labelClass} htmlFor="stack">
-          Your tech stack <span className="text-amber-300">*</span>
+          Your tech stack <span className="text-amber-700">*</span>
         </label>
         <input
           id="stack"
@@ -260,7 +256,7 @@ export default function UploadForm({ onComplete }: UploadFormProps) {
             {stackItems.map((s, i) => (
               <span
                 key={`${s}-${i}`}
-                className="rounded-full bg-amber-300/15 px-3 py-1 text-xs font-medium text-amber-200"
+                className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-900"
               >
                 {s}
               </span>
@@ -271,7 +267,7 @@ export default function UploadForm({ onComplete }: UploadFormProps) {
       </div>
 
       {/* Optional section */}
-      <div className="rounded-3xl border border-white/10 bg-white/[0.03]">
+      <div className="rounded-3xl border border-sky-300 bg-sky-50/70">
         <button
           type="button"
           onClick={() => setShowOptional((v) => !v)}
@@ -279,15 +275,15 @@ export default function UploadForm({ onComplete }: UploadFormProps) {
           className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left"
         >
           <span>
-            <span className="block text-sm font-medium text-stone-100">
+            <span className="block text-sm font-semibold text-stone-900">
               Optional: boost your score
             </span>
-            <span className="block text-xs text-stone-400">
+            <span className="block text-xs text-stone-700">
               More sources mean more skills we can verify
             </span>
           </span>
           <span
-            className={`text-stone-400 transition-transform ${
+            className={`text-stone-700 transition-transform ${
               showOptional ? "rotate-180" : ""
             }`}
             aria-hidden
@@ -297,7 +293,7 @@ export default function UploadForm({ onComplete }: UploadFormProps) {
         </button>
 
         {showOptional && (
-          <div className="space-y-5 border-t border-white/10 px-5 py-5">
+          <div className="space-y-5 border-t border-sky-300 px-5 py-5">
             <div>
               <label className={labelClass} htmlFor="linkedin">
                 LinkedIn text
@@ -349,7 +345,7 @@ export default function UploadForm({ onComplete }: UploadFormProps) {
       {serverError && (
         <div
           role="alert"
-          className="rounded-2xl border border-rose-300/30 bg-rose-400/10 px-5 py-4 text-sm text-rose-200"
+          className="rounded-2xl border border-rose-400 bg-rose-50 px-5 py-4 text-sm font-medium text-rose-800"
         >
           {serverError}
         </div>
@@ -358,11 +354,11 @@ export default function UploadForm({ onComplete }: UploadFormProps) {
       <button
         type="submit"
         disabled={loading}
-        className="flex w-full items-center justify-center gap-2 rounded-full bg-amber-300 px-6 py-3.5 text-sm font-semibold text-stone-900 shadow-lg shadow-amber-300/10 transition hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-70"
+        className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-300 to-orange-300 px-6 py-3.5 text-sm font-semibold text-stone-900 shadow-lg shadow-orange-200/70 transition hover:from-amber-200 hover:to-orange-200 disabled:cursor-not-allowed disabled:opacity-70"
       >
         {loading && (
           <span
-            className="h-4 w-4 animate-spin rounded-full border-2 border-stone-900/30 border-t-stone-900"
+            className="h-4 w-4 animate-spin rounded-full border-2 border-stone-900/20 border-t-stone-900"
             aria-hidden
           />
         )}

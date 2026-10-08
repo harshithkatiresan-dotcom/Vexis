@@ -6,6 +6,8 @@ import type { SkillResult } from "@/types";
 
 interface SkillBreakdownProps {
   breakdown: SkillResult[];
+  /** Colour classes for the card (border, background, shadow). */
+  cardClass?: string;
 }
 
 type SortField = "skill" | "w" | "S" | "R" | "contribution";
@@ -34,26 +36,26 @@ function DimBars({ row }: { row: SkillResult }) {
         const verified = row.V[i] ?? 0;
         return (
           <div key={dim}>
-            <p className="mb-2 text-xs font-medium capitalize text-stone-300">
+            <p className="mb-2 text-xs font-bold capitalize text-stone-900">
               {dim}
             </p>
             <div className="space-y-1.5">
-              <div className="flex items-center gap-2 text-xs text-stone-400">
+              <div className="flex items-center gap-2 text-xs font-medium text-stone-800">
                 <span className="w-14 shrink-0">Claimed</span>
-                <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-stone-300">
                   <div
-                    className="h-full rounded-full bg-stone-400"
+                    className="h-full rounded-full bg-stone-600"
                     style={{ width: pct(claimed) }}
                   />
                 </div>
                 <span className="w-9 text-right tabular-nums">{pct(claimed)}</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-stone-400">
+              <div className="flex items-center gap-2 text-xs font-medium text-stone-800">
                 <span className="w-14 shrink-0">Verified</span>
-                <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-stone-300">
                   <div
                     className={`h-full rounded-full ${
-                      verified < claimed ? "bg-rose-300" : "bg-teal-300"
+                      verified < claimed ? "bg-rose-500" : "bg-teal-600"
                     }`}
                     style={{ width: pct(verified) }}
                   />
@@ -68,7 +70,10 @@ function DimBars({ row }: { row: SkillResult }) {
   );
 }
 
-export default function SkillBreakdown({ breakdown }: SkillBreakdownProps) {
+export default function SkillBreakdown({
+  breakdown,
+  cardClass = "border-white bg-white/75 shadow-xl shadow-amber-900/5",
+}: SkillBreakdownProps) {
   const [sortField, setSortField] = useState<SortField>("contribution");
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
   const [open, setOpen] = useState<string | null>(null);
@@ -93,10 +98,10 @@ export default function SkillBreakdown({ breakdown }: SkillBreakdownProps) {
   return (
     <section
       aria-label="Skill breakdown"
-      className="w-full rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-8"
+      className={`w-full rounded-3xl border p-6 backdrop-blur-md sm:p-8 ${cardClass}`}
     >
-      <h2 className="text-xl font-bold text-stone-50">Skill by skill</h2>
-      <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-stone-400">
+      <h2 className="text-xl font-bold text-stone-900">Skill by skill</h2>
+      <p className="mt-1.5 max-w-xl text-sm font-medium leading-relaxed text-stone-800">
         Each skill earns points from how important it is, how well your claim
         matched what we verified, and how well your resume backs it up.
         {overclaimedCount > 0 &&
@@ -106,12 +111,12 @@ export default function SkillBreakdown({ breakdown }: SkillBreakdownProps) {
       </p>
 
       {breakdown.length === 0 ? (
-        <p className="mt-6 text-sm text-stone-500">No skills to show.</p>
+        <p className="mt-6 text-sm text-stone-700">No skills to show.</p>
       ) : (
         <div className="mt-6 overflow-x-auto">
           <table className="w-full min-w-[34rem] text-left text-sm">
             <thead>
-              <tr className="border-b border-white/10 text-xs uppercase tracking-wider text-stone-400">
+              <tr className="border-b border-stone-400/70 text-xs uppercase tracking-wider text-stone-800">
                 {COLUMNS.map((col) => {
                   const active = sortField === col.field;
                   return (
@@ -125,15 +130,15 @@ export default function SkillBreakdown({ breakdown }: SkillBreakdownProps) {
                             : "descending"
                           : "none"
                       }
-                      className={`px-3 py-3 font-semibold ${
+                      className={`px-3 py-3 font-bold ${
                         col.align === "right" ? "text-right" : "text-left"
                       }`}
                     >
                       <button
                         type="button"
                         onClick={() => handleSort(col.field)}
-                        className={`inline-flex items-center gap-1 uppercase tracking-wider transition hover:text-stone-100 ${
-                          active ? "text-amber-200" : ""
+                        className={`inline-flex items-center gap-1 uppercase tracking-wider transition hover:text-stone-900 ${
+                          active ? "text-violet-800" : ""
                         }`}
                       >
                         {col.label}
@@ -144,7 +149,7 @@ export default function SkillBreakdown({ breakdown }: SkillBreakdownProps) {
                     </th>
                   );
                 })}
-                <th scope="col" className="px-3 py-3 text-center font-semibold">
+                <th scope="col" className="px-3 py-3 text-center font-bold">
                   Status
                 </th>
               </tr>
@@ -157,17 +162,17 @@ export default function SkillBreakdown({ breakdown }: SkillBreakdownProps) {
                   <Fragment key={r.skill}>
                     <tr
                       onClick={() => setOpen(isOpen ? null : r.skill)}
-                      className={`cursor-pointer border-b border-white/5 transition ${
+                      className={`cursor-pointer border-b border-stone-300/80 transition ${
                         r.overclaimed
-                          ? "bg-rose-300/[0.07] hover:bg-rose-300/[0.12]"
-                          : "hover:bg-white/[0.04]"
+                          ? "bg-rose-100/70 hover:bg-rose-100"
+                          : "hover:bg-white/70"
                       }`}
                     >
                       <td className="px-3 py-4">
                         <div className="flex items-center gap-2.5">
                           <span
                             className={`h-8 w-1 rounded-full ${
-                              r.overclaimed ? "bg-rose-300" : "bg-transparent"
+                              r.overclaimed ? "bg-rose-500" : "bg-transparent"
                             }`}
                             aria-hidden
                           />
@@ -179,12 +184,12 @@ export default function SkillBreakdown({ breakdown }: SkillBreakdownProps) {
                                 e.stopPropagation();
                                 setOpen(isOpen ? null : r.skill);
                               }}
-                              className="flex items-center gap-1.5 font-medium text-stone-50"
+                              className="flex items-center gap-1.5 font-bold text-stone-900"
                             >
                               {r.skill}
                               <span
                                 aria-hidden
-                                className={`text-[10px] text-stone-500 transition-transform ${
+                                className={`text-[10px] text-stone-600 transition-transform ${
                                   isOpen ? "rotate-180" : ""
                                 }`}
                               >
@@ -192,32 +197,32 @@ export default function SkillBreakdown({ breakdown }: SkillBreakdownProps) {
                               </span>
                             </button>
                             {r.overclaimed && (
-                              <p className="mt-0.5 text-xs text-rose-200">
+                              <p className="mt-0.5 text-xs font-semibold text-rose-800">
                                 Claimed more than verified
                               </p>
                             )}
                           </div>
                         </div>
                       </td>
-                      <td className="px-3 py-4 text-right tabular-nums text-stone-300">
+                      <td className="px-3 py-4 text-right font-medium tabular-nums text-stone-800">
                         {pct(r.w)}
                       </td>
-                      <td className="px-3 py-4 text-right tabular-nums text-stone-300">
+                      <td className="px-3 py-4 text-right font-medium tabular-nums text-stone-800">
                         {pct(r.S)}
                       </td>
-                      <td className="px-3 py-4 text-right tabular-nums text-stone-300">
+                      <td className="px-3 py-4 text-right font-medium tabular-nums text-stone-800">
                         {pct(r.R)}
                       </td>
-                      <td className="px-3 py-4 text-right font-semibold tabular-nums text-amber-200">
+                      <td className="px-3 py-4 text-right font-bold tabular-nums text-amber-800">
                         +{r.contribution.toFixed(1)}
                       </td>
                       <td className="px-3 py-4 text-center">
                         {r.overclaimed ? (
-                          <span className="inline-block whitespace-nowrap rounded-full border border-rose-300/30 bg-rose-300/10 px-2.5 py-0.5 text-xs font-medium text-rose-200">
+                          <span className="inline-block whitespace-nowrap rounded-full border border-rose-400 bg-rose-100 px-2.5 py-0.5 text-xs font-semibold text-rose-900">
                             Penalty applied
                           </span>
                         ) : (
-                          <span className="inline-block whitespace-nowrap rounded-full border border-teal-300/30 bg-teal-300/10 px-2.5 py-0.5 text-xs font-medium text-teal-200">
+                          <span className="inline-block whitespace-nowrap rounded-full border border-teal-400 bg-teal-100 px-2.5 py-0.5 text-xs font-semibold text-teal-900">
                             No penalty
                           </span>
                         )}
@@ -225,7 +230,7 @@ export default function SkillBreakdown({ breakdown }: SkillBreakdownProps) {
                     </tr>
 
                     {isOpen && (
-                      <tr className="border-b border-white/5 bg-black/10">
+                      <tr className="border-b border-stone-300/80 bg-white/70">
                         <td colSpan={6} className="px-6 py-5">
                           <DimBars row={r} />
                         </td>
@@ -238,10 +243,13 @@ export default function SkillBreakdown({ breakdown }: SkillBreakdownProps) {
 
             <tfoot>
               <tr>
-                <td colSpan={4} className="px-3 py-4 text-right text-xs uppercase tracking-wider text-stone-400">
+                <td
+                  colSpan={4}
+                  className="px-3 py-4 text-right text-xs font-semibold uppercase tracking-wider text-stone-800"
+                >
                   Total (before rounding)
                 </td>
-                <td className="px-3 py-4 text-right text-base font-bold tabular-nums text-stone-50">
+                <td className="px-3 py-4 text-right text-base font-bold tabular-nums text-stone-900">
                   {total.toFixed(1)}
                 </td>
                 <td />
@@ -251,7 +259,7 @@ export default function SkillBreakdown({ breakdown }: SkillBreakdownProps) {
         </div>
       )}
 
-      <p className="mt-4 text-xs text-stone-500">
+      <p className="mt-4 text-xs font-medium text-stone-700">
         Tap a skill to compare what you claimed with what we verified.
       </p>
     </section>

@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 interface ScoreGaugeProps {
   score: number; // 0-100, straight from ReportResponse.jrs
   size?: number;
+  /** Colour classes for the card (border, background, shadow). */
+  cardClass?: string;
 }
 
 interface Tier {
@@ -20,31 +22,35 @@ function tierFor(score: number): Tier {
   if (score >= 75) {
     return {
       label: "Job ready",
-      stroke: "#5eead4",
-      text: "text-teal-200",
-      pill: "border-teal-300/30 bg-teal-300/10",
-      glow: "rgba(94, 234, 212, 0.18)",
+      stroke: "#0d9488",
+      text: "text-teal-900",
+      pill: "border-teal-400 bg-teal-100",
+      glow: "rgba(45, 212, 191, 0.35)",
     };
   }
   if (score >= 50) {
     return {
       label: "Getting there",
-      stroke: "#fcd34d",
-      text: "text-amber-200",
-      pill: "border-amber-300/30 bg-amber-300/10",
-      glow: "rgba(252, 211, 77, 0.18)",
+      stroke: "#d97706",
+      text: "text-amber-900",
+      pill: "border-amber-400 bg-amber-100",
+      glow: "rgba(251, 191, 36, 0.35)",
     };
   }
   return {
     label: "Not ready",
-    stroke: "#fda4af",
-    text: "text-rose-200",
-    pill: "border-rose-300/30 bg-rose-300/10",
-    glow: "rgba(253, 164, 175, 0.18)",
+    stroke: "#e11d48",
+    text: "text-rose-900",
+    pill: "border-rose-400 bg-rose-100",
+    glow: "rgba(251, 113, 133, 0.3)",
   };
 }
 
-export default function ScoreGauge({ score, size = 260 }: ScoreGaugeProps) {
+export default function ScoreGauge({
+  score,
+  size = 260,
+  cardClass = "border-white bg-white/75 shadow-xl shadow-amber-900/5",
+}: ScoreGaugeProps) {
   const target = Math.min(100, Math.max(0, Math.round(score)));
   const [value, setValue] = useState(0);
 
@@ -70,8 +76,7 @@ export default function ScoreGauge({ score, size = 260 }: ScoreGaugeProps) {
     return () => cancelAnimationFrame(frame);
   }, [target]);
 
-  // The label and colour follow the FINAL score, so they don't flicker
-  // through "Not ready" and "Getting there" while the number counts up.
+  // Label and colour follow the FINAL score, so they don't flicker while counting up.
   const tier = tierFor(target);
 
   // Geometry: a 240 degree arc, opening at the bottom.
@@ -83,14 +88,15 @@ export default function ScoreGauge({ score, size = 260 }: ScoreGaugeProps) {
   const dashOffset = arcLength - (value / 100) * arcLength;
 
   return (
-    <div className="flex flex-col items-center rounded-3xl border border-white/10 bg-white/[0.04] px-6 pb-8 pt-8 shadow-2xl shadow-black/30 backdrop-blur-md">
+    <div
+      className={`flex flex-col items-center rounded-3xl border px-6 pb-8 pt-8 backdrop-blur-md ${cardClass}`}
+    >
       <div
         className="relative"
         style={{ width: size, height: size }}
         role="img"
         aria-label={`Job readiness score: ${target} out of 100, ${tier.label}`}
       >
-        {/* Soft glow behind the dial */}
         <div
           className="absolute inset-4 rounded-full blur-3xl transition-colors duration-700"
           style={{ background: tier.glow }}
@@ -103,18 +109,16 @@ export default function ScoreGauge({ score, size = 260 }: ScoreGaugeProps) {
           className="relative z-10 rotate-[150deg]"
           aria-hidden
         >
-          {/* Track */}
           <circle
             cx={center}
             cy={center}
             r={radius}
             fill="none"
-            stroke="rgba(255,255,255,0.08)"
+            stroke="rgba(87, 83, 78, 0.22)"
             strokeWidth={strokeWidth}
             strokeDasharray={`${arcLength} ${circumference}`}
             strokeLinecap="round"
           />
-          {/* Value (hidden at 0 so the round cap doesn't show as a dot) */}
           {value > 0.5 && (
             <circle
               cx={center}
@@ -130,12 +134,11 @@ export default function ScoreGauge({ score, size = 260 }: ScoreGaugeProps) {
           )}
         </svg>
 
-        {/* Centre text */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pb-3">
-          <span className="text-6xl font-bold tabular-nums tracking-tight text-stone-50">
+          <span className="text-6xl font-bold tabular-nums tracking-tight text-stone-900">
             {Math.round(value)}
           </span>
-          <span className="mt-1 text-xs font-medium uppercase tracking-[0.2em] text-stone-400">
+          <span className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-stone-700">
             out of 100
           </span>
         </div>
@@ -143,11 +146,11 @@ export default function ScoreGauge({ score, size = 260 }: ScoreGaugeProps) {
 
       <div className="-mt-4 text-center">
         <span
-          className={`inline-block rounded-full border px-5 py-1.5 text-sm font-semibold ${tier.text} ${tier.pill}`}
+          className={`inline-block rounded-full border px-5 py-1.5 text-sm font-bold ${tier.text} ${tier.pill}`}
         >
           {tier.label}
         </span>
-        <p className="mx-auto mt-3 max-w-[16rem] text-xs leading-relaxed text-stone-500">
+        <p className="mx-auto mt-3 max-w-[16rem] text-xs font-medium leading-relaxed text-stone-700">
           Your Job Readiness Score, based on what you claimed and what we could verify.
         </p>
       </div>
