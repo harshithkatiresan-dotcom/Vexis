@@ -1,0 +1,42 @@
+{
+  "Web Development": {
+    "skills": [
+      { "name": "React",       "w": 0.18, "aliases": ["react.js", "reactjs", "next.js", "nextjs"] },
+      { "name": "JavaScript",  "w": 0.12, "aliases": ["js", "es6", "ecmascript"] },
+      { "name": "TypeScript",  "w": 0.10, "aliases": ["ts"] },
+      { "name": "Node.js",     "w": 0.12, "aliases": ["node", "nodejs", "express", "express.js"] },
+      { "name": "SQL",         "w": 0.12, "aliases": ["mysql", "postgresql", "postgres", "sqlite"] },
+      { "name": "REST APIs",   "w": 0.10, "aliases": ["rest", "api design", "restful", "fastapi", "flask"] },
+      { "name": "Git",         "w": 0.10, "aliases": ["github", "version control", "gitlab"] },
+      { "name": "HTML/CSS",    "w": 0.08, "aliases": ["html", "css", "tailwind", "bootstrap", "html5", "css3"] },
+      { "name": "Docker",      "w": 0.04, "aliases": ["containers", "docker compose"] },
+      { "name": "Testing",     "w": 0.04, "aliases": ["jest", "unit testing", "pytest", "cypress"] }
+    ]
+  },
+  "Data Science / ML": {
+    "skills": [
+      { "name": "Python",             "w": 0.18, "aliases": ["python3"] },
+      { "name": "Machine Learning",   "w": 0.18, "aliases": ["ml", "scikit-learn", "sklearn", "xgboost"] },
+      { "name": "Statistics",         "w": 0.14, "aliases": ["probability", "hypothesis testing", "statistical analysis"] },
+      { "name": "Pandas/NumPy",       "w": 0.12, "aliases": ["pandas", "numpy", "data wrangling", "data cleaning"] },
+      { "name": "SQL",                "w": 0.12, "aliases": ["mysql", "postgresql", "postgres"] },
+      { "name": "Deep Learning",      "w": 0.08, "aliases": ["pytorch", "tensorflow", "keras", "neural networks", "cnn", "nlp"] },
+      { "name": "Data Visualization", "w": 0.08, "aliases": ["matplotlib", "seaborn", "plotly", "tableau", "power bi"] },
+      { "name": "Git",                "w": 0.05, "aliases": ["github", "version control"] },
+      { "name": "MLOps",              "w": 0.05, "aliases": ["mlflow", "model deployment", "docker", "airflow"] }
+    ]
+  },
+  "UI/UX Design": {
+    "skills": [
+      { "name": "Figma",                   "w": 0.20, "aliases": ["figma prototyping", "auto layout"] },
+      { "name": "User Research",           "w": 0.15, "aliases": ["interviews", "user interviews", "personas", "surveys"] },
+      { "name": "Wireframing & Prototyping", "w": 0.15, "aliases": ["wireframes", "prototype", "low-fi", "hi-fi", "mockups"] },
+      { "name": "Visual Design",           "w": 0.12, "aliases": ["typography", "color theory", "layout", "branding"] },
+      { "name": "Interaction Design",      "w": 0.10, "aliases": ["user flows", "micro-interactions", "motion"] },
+      { "name": "Design Systems",          "w": 0.10, "aliases": ["component library", "design tokens", "style guide"] },
+      { "name": "Usability Testing",       "w": 0.08, "aliases": ["user testing", "a/b testing", "heuristic evaluation"] },
+      { "name": "Accessibility",           "w": 0.06, "aliases": ["a11y", "wcag", "inclusive design"] },
+      { "name": "HTML/CSS",                "w": 0.04, "aliases": ["html", "css", "front-end basics"] }
+    ]
+  }
+}

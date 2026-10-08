@@ -1,0 +1,126 @@
+﻿{
+  "React": [
+    {"dim":"theory","prompt":"What does useEffect with an empty dependency array ([]) do?","options":["Runs after every render","Runs once after the first render","Runs before every render","Never runs"],"answer":1},
+    {"dim":"practice","prompt":"A list is rendered with .map() and React warns about missing keys. What is the best key?","options":["The array index, always","A stable unique id from the data","Math.random() on each render","The length of the item's text"],"answer":1}
+  ],
+  "JavaScript": [
+    {"dim":"theory","prompt":"How does === differ from ==?","options":["It compares value and type without coercion","It compares only the type","It compares references only","There is no difference"],"answer":0},
+    {"dim":"practice","prompt":"What does console.log(typeof null) print?","options":["null","undefined","object","number"],"answer":2}
+  ],
+  "TypeScript": [
+    {"dim":"theory","prompt":"What is the main benefit of TypeScript over JavaScript?","options":["Faster runtime","Static type checking at compile time","Smaller bundles","Built-in UI components"],"answer":1},
+    {"dim":"practice","prompt":"Which type is safer than any when a value's type is truly unknown?","options":["unknown","object","never","void"],"answer":0}
+  ],
+  "Node.js": [
+    {"dim":"theory","prompt":"Node.js handles many concurrent connections mainly because of:","options":["One thread per request","A non-blocking event loop","A new process for every request","Compiling to C++"],"answer":1},
+    {"dim":"practice","prompt":"In Express, what must a middleware call to pass control to the next handler?","options":["next()","return()","done()","continue()"],"answer":0}
+  ],
+  "SQL": [
+    {"dim":"theory","prompt":"Which join returns all rows from the left table even when there is no match on the right?","options":["INNER JOIN","LEFT JOIN","CROSS JOIN","Only a SELF JOIN"],"answer":1},
+    {"dim":"practice","prompt":"Which clause filters groups after aggregation?","options":["WHERE","HAVING","ORDER BY","LIMIT"],"answer":1}
+  ],
+  "REST APIs": [
+    {"dim":"theory","prompt":"Which HTTP method is idempotent and typically replaces a whole resource?","options":["POST","PUT","CONNECT","None of them"],"answer":1},
+    {"dim":"practice","prompt":"Which status code should an API return when a resource is created?","options":["200","201","204","302"],"answer":1}
+  ],
+  "Git": [
+    {"dim":"theory","prompt":"What does git rebase do?","options":["Deletes a branch","Replays commits onto a new base","Pushes to the remote","Reverts a commit"],"answer":1},
+    {"dim":"practice","prompt":"Which command shows unstaged changes?","options":["git diff","git log","git push","git stash list"],"answer":0}
+  ],
+  "Python": [
+    {"dim":"theory","prompt":"What is the key difference between a list and a tuple?","options":["Tuples are mutable, lists are not","Lists are mutable, tuples are not","They are identical","Tuples can only hold numbers"],"answer":1},
+    {"dim":"practice","prompt":"What does [x*2 for x in range(3)] produce?","options":["[0, 2, 4]","[2, 4, 6]","[0, 1, 2]","[0, 2, 4, 6]"],"answer":0}
+  ],
+  "Machine Learning": [
+    {"dim":"theory","prompt":"What is overfitting?","options":["Good on training data but poor on new data","Poor on all data","Training that takes too long","A model with too few parameters"],"answer":0},
+    {"dim":"practice","prompt":"Which data split should you use to tune hyperparameters without touching the final test set?","options":["Validation set","Training set only","Test set","None of them"],"answer":0}
+  ],
+  "Statistics": [
+    {"dim":"theory","prompt":"A p-value of 0.03 means:","options":["There is a 3% chance the null hypothesis is true","Data this extreme would occur 3% of the time if the null were true","The effect is 97% likely to be real","The sample size is 3%"],"answer":1},
+    {"dim":"practice","prompt":"Which measure of center is least affected by outliers?","options":["Mean","Median","Range","Variance"],"answer":1}
+  ],
+  "Pandas/NumPy": [
+    {"dim":"theory","prompt":"What is NumPy broadcasting?","options":["Sending arrays over a network","Applying operations to arrays of different shapes by stretching dimensions","Sorting arrays","Copying arrays"],"answer":1},
+    {"dim":"practice","prompt":"Which pandas call gives the count of missing values per column?","options":["df.isna().sum()","df.count_na()","df.missing()","df.null()"],"answer":0}
+  ],
+  "Figma": [
+    {"dim":"theory","prompt":"What is Auto Layout in Figma used for?","options":["Frames that resize and reflow with their content","Exporting code","Version history","Pixel snapping only"],"answer":0},
+    {"dim":"practice","prompt":"Which Figma feature lets you reuse an element and update every copy at once?","options":["Components","Groups","Flatten","Masks"],"answer":0}
+  ],
+  "User Research": [
+    {"dim":"theory","prompt":"Which is a leading interview question you should avoid?","options":["Tell me about the last time you booked a trip","Don't you think this checkout is confusing?","What did you do next?","How do you usually decide?"],"answer":1},
+    {"dim":"practice","prompt":"Roughly how many users uncover most usability issues in one round of qualitative testing?","options":["1","5","50","500"],"answer":1}
+  ],
+  "Wireframing & Prototyping": [
+    {"dim":"theory","prompt":"What is the main purpose of a low-fidelity wireframe?","options":["Final visual polish","Agree on structure and flow before visual design","Developer handoff specs","Brand guidelines"],"answer":1},
+    {"dim":"practice","prompt":"Which usually comes first in a design process?","options":["High-fidelity mockup","Low-fidelity wireframe","Developer handoff","Launch review"],"answer":1}
+  ],
+  "Visual Design": [
+    {"dim":"theory","prompt":"What contrast}
+@'
+{
+  "React": [
+    {"dim":"theory","prompt":"What does useEffect with an empty dependency array ([]) do?","options":["Runs after every render","Runs once after the first render","Runs before every render","Never runs"],"answer":1},
+    {"dim":"practice","prompt":"A list is rendered with .map() and React warns about missing keys. What is the best key?","options":["The array index, always","A stable unique id from the data","Math.random() on each render","The length of the item's text"],"answer":1}
+  ],
+  "JavaScript": [
+    {"dim":"theory","prompt":"How does === differ from ==?","options":["It compares value and type without coercion","It compares only the type","It compares references only","There is no difference"],"answer":0},
+    {"dim":"practice","prompt":"What does console.log(typeof null) print?","options":["null","undefined","object","number"],"answer":2}
+  ],
+  "TypeScript": [
+    {"dim":"theory","prompt":"What is the main benefit of TypeScript over JavaScript?","options":["Faster runtime","Static type checking at compile time","Smaller bundles","Built-in UI components"],"answer":1},
+    {"dim":"practice","prompt":"Which type is safer than any when a value's type is truly unknown?","options":["unknown","object","never","void"],"answer":0}
+  ],
+  "Node.js": [
+    {"dim":"theory","prompt":"Node.js handles many concurrent connections mainly because of:","options":["One thread per request","A non-blocking event loop","A new process for every request","Compiling to C++"],"answer":1},
+    {"dim":"practice","prompt":"In Express, what must a middleware call to pass control to the next handler?","options":["next()","return()","done()","continue()"],"answer":0}
+  ],
+  "SQL": [
+    {"dim":"theory","prompt":"Which join returns all rows from the left table even when there is no match on the right?","options":["INNER JOIN","LEFT JOIN","CROSS JOIN","Only a SELF JOIN"],"answer":1},
+    {"dim":"practice","prompt":"Which clause filters groups after aggregation?","options":["WHERE","HAVING","ORDER BY","LIMIT"],"answer":1}
+  ],
+  "REST APIs": [
+    {"dim":"theory","prompt":"Which HTTP method is idempotent and typically replaces a whole resource?","options":["POST","PUT","CONNECT","None of them"],"answer":1},
+    {"dim":"practice","prompt":"Which status code should an API return when a resource is created?","options":["200","201","204","302"],"answer":1}
+  ],
+  "Git": [
+    {"dim":"theory","prompt":"What does git rebase do?","options":["Deletes a branch","Replays commits onto a new base","Pushes to the remote","Reverts a commit"],"answer":1},
+    {"dim":"practice","prompt":"Which command shows unstaged changes?","options":["git diff","git log","git push","git stash list"],"answer":0}
+  ],
+  "Python": [
+    {"dim":"theory","prompt":"What is the key difference between a list and a tuple?","options":["Tuples are mutable, lists are not","Lists are mutable, tuples are not","They are identical","Tuples can only hold numbers"],"answer":1},
+    {"dim":"practice","prompt":"What does [x*2 for x in range(3)] produce?","options":["[0, 2, 4]","[2, 4, 6]","[0, 1, 2]","[0, 2, 4, 6]"],"answer":0}
+  ],
+  "Machine Learning": [
+    {"dim":"theory","prompt":"What is overfitting?","options":["Good on training data but poor on new data","Poor on all data","Training that takes too long","A model with too few parameters"],"answer":0},
+    {"dim":"practice","prompt":"Which data split should you use to tune hyperparameters without touching the final test set?","options":["Validation set","Training set only","Test set","None of them"],"answer":0}
+  ],
+  "Statistics": [
+    {"dim":"theory","prompt":"A p-value of 0.03 means:","options":["There is a 3% chance the null hypothesis is true","Data this extreme would occur 3% of the time if the null were true","The effect is 97% likely to be real","The sample size is 3%"],"answer":1},
+    {"dim":"practice","prompt":"Which measure of center is least affected by outliers?","options":["Mean","Median","Range","Variance"],"answer":1}
+  ],
+  "Pandas/NumPy": [
+    {"dim":"theory","prompt":"What is NumPy broadcasting?","options":["Sending arrays over a network","Applying operations to arrays of different shapes by stretching dimensions","Sorting arrays","Copying arrays"],"answer":1},
+    {"dim":"practice","prompt":"Which pandas call gives the count of missing values per column?","options":["df.isna().sum()","df.count_na()","df.missing()","df.null()"],"answer":0}
+  ],
+  "Figma": [
+    {"dim":"theory","prompt":"What is Auto Layout in Figma used for?","options":["Frames that resize and reflow with their content","Exporting code","Version history","Pixel snapping only"],"answer":0},
+    {"dim":"practice","prompt":"Which Figma feature lets you reuse an element and update every copy at once?","options":["Components","Groups","Flatten","Masks"],"answer":0}
+  ],
+  "User Research": [
+    {"dim":"theory","prompt":"Which is a leading interview question you should avoid?","options":["Tell me about the last time you booked a trip","Don't you think this checkout is confusing?","What did you do next?","How do you usually decide?"],"answer":1},
+    {"dim":"practice","prompt":"Roughly how many users uncover most usability issues in one round of qualitative testing?","options":["1","5","50","500"],"answer":1}
+  ],
+  "Wireframing & Prototyping": [
+    {"dim":"theory","prompt":"What is the main purpose of a low-fidelity wireframe?","options":["Final visual polish","Agree on structure and flow before visual design","Developer handoff specs","Brand guidelines"],"answer":1},
+    {"dim":"practice","prompt":"Which usually comes first in a design process?","options":["High-fidelity mockup","Low-fidelity wireframe","Developer handoff","Launch review"],"answer":1}
+  ],
+  "Visual Design": [
+    {"dim":"theory","prompt":"What contrast ratio does WCAG AA require for normal body text?","options":["2:1","3:1","4.5:1","10:1"],"answer":2},
+    {"dim":"practice","prompt":"Which principle groups related items by placing them close together?","options":["Proximity","Symmetry","Repetition","Emphasis"],"answer":0}
+  ],
+  "Interaction Design": [
+    {"dim":"theory","prompt":"Fitts's Law says the time to reach a target depends on:","options":["Its color","Its distance and size","Its label length","Its position in the DOM"],"answer":1},
+    {"dim":"practice","prompt":"What should a good error message do?","options":["Blame the user","Explain what went wrong and how to fix it","Show only an error code","Disappear instantly"],"answer":1}
+  ]
+}
